@@ -1,28 +1,37 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import {Feather} from '@expo/vector-icons';
+import {controlLight} from '../utilities/lights';
+//import {Feather} from '@expo/vector-icons';
+
+type callbackType = () => void;
 
 export type Props = {};
 
 const IndexScreen: React.FC<Props> = ({name, baseEnthusiasmLevel = 0}) => {
-  const greet = (person: string) => {
-    console.log(`Hello ${person}!`);
+  function controlLightCallback(): void {}
+
+  const turnOn = (lightID: number, callback: callbackType) => {
+    controlLight(lightID, callback);
   };
 
-  const turnOn = () => {
-    greet('Pochito');
-  };
-
-  const turnOff = () => {
-    greet('Pochonga');
+  const turnOff = (lightID: number, callback: callbackType) => {
+    controlLight(lightID, callback);
   };
 
   return (
     <View>
-      <Text style={styles.title}>Hello!, Welcome to Makimaki</Text>
+      <Text style={styles.title}>Kia ora!, Haere mai to Makimaki</Text>
       <View>
-        <Button title="Turn Light ON" onPress={turnOn} color="blue" />
-        <Button title="Turn Light OFF" onPress={turnOff} color="red" />
+        <Button
+          title="Turn Light ON"
+          onPress={() => turnOn(1, controlLightCallback)}
+          color="blue"
+        />
+        <Button
+          title="Turn Light OFF"
+          onPress={() => turnOff(1, controlLightCallback)}
+          color="red"
+        />
       </View>
     </View>
   );

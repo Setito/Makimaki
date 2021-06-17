@@ -1,4 +1,5 @@
 import React from 'react';
+//import * as dotenv from 'dotenv';
 
 //import {createAppContainer} from 'react-navigation';
 //import {createStackNavigator} from 'react-navigation-stack';
@@ -20,6 +21,8 @@ import IndexScreen from './src/screens/IndexScreen';
 //const App = createAppContainer(navigator);
 
 const App = () => {
+  //dotenv.config();
+
   return <IndexScreen></IndexScreen>;
 };
 

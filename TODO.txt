@@ -1,0 +1,17 @@
+Next Steps!
+- App activates device's bluethoot and communicates with the bulb
+    - Man in the middle to understand how it works
+    - Zigbee protocol
+
+
+- Investigate differences between .tsx and .ts
+- How to create a types library?
+- Investigate how to get environment variables
+- How to sue GraphQL to hit Philips API
+
+
+
+- What I learned?
+    - Typescript basic (declaring components, functions and custom types)
+        https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+    -
