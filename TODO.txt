@@ -8,6 +8,7 @@ Next Steps!
 - How to create a types library?
 - Investigate how to get environment variables
 - How to sue GraphQL to hit Philips API
+- Solve warning error when running app related to version 29 and 30
 
 
 
@@ -15,3 +16,6 @@ Next Steps!
     - Typescript basic (declaring components, functions and custom types)
         https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
     -
+
+Solved errors:
+    - Could not resolve dependency: peer react@"^16.8.0" from react-native-bluetooth-status@1.5.1
