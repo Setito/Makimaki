@@ -4,19 +4,23 @@ import axios from 'axios';
 
 type controlLightCallback = () => void;
 
-/*const controlLight = async (ligthID: number, on: controlLightCallback) => {
+const controlLight = async (
+  ligthID: number,
+  blePower: boolean,
+  on: controlLightCallback,
+) => {
+  try {
+  } catch (error) {}
+
   try {
     return await axios.put(
-      `http://192.168.11.109/api/pi/lights/${ligthID}/state`,
+      //`http://192.168.11.109/api/pi/lights/${ligthID}/state`,
+      'localhost:3000/turnOn',
       {on},
     );
   } catch (error) {
-    console.log(error);
+    console.log('ERROR: ', error);
   }
-};*/
-
-const controlLight = async (ligthID: number, on: controlLightCallback) => {
-  console.log('reached!');
 };
 
 export {controlLight};

@@ -1,6 +1,7 @@
 import React from 'react';
 //import * as dotenv from 'dotenv';
 
+import {Provider as BLEProvider} from './src/utilities/context/BLEContext';
 //import {createAppContainer} from 'react-navigation';
 //import {createStackNavigator} from 'react-navigation-stack';
 
@@ -23,7 +24,11 @@ import IndexScreen from './src/screens/IndexScreen';
 const App = () => {
   //dotenv.config();
 
-  return <IndexScreen></IndexScreen>;
+  return (
+    <BLEProvider>
+      <IndexScreen></IndexScreen>
+    </BLEProvider>
+  );
 };
 
 export default () => {

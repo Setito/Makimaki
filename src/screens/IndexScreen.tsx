@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {
   View,
   Text,
@@ -6,85 +6,16 @@ import {
   Button,
   StatusBar,
   SafeAreaView,
-  Platform,
 } from 'react-native';
-import {manager} from '../utilities/BleManager';
-import {controlLight} from '../utilities/lights';
+import {Context as BLEContext} from '../utilities/context/BLEContext';
 import HueBulb from '../components/HueBulb';
-
-type callbackType = () => void;
 
 export type Props = {};
 
 const IndexScreen: React.FC<Props> = () => {
-  const [bulbState, setBulbState] = useState(false);
-  const [btActive, setBtActive] = useState(false);
+  const {state, setBLEState} = useContext(BLEContext);
 
-  useEffect(
-    () => {
-      /*const scanAndConnect = () => {
-      manager.startDeviceScan(null, null, (error, device) => {
-        if (error) {
-          // Handle error (scanning will be stopped automatically)
-          return;
-        }
-
-        // Check if it is a device you are looking for based on advertisement data
-        // or other criteria.
-        if (
-          device.name === 'TI BLE Sensor Tag' ||
-          device.name === 'SensorTag'
-        ) {
-          // Stop scanning as it's not necessary if you are scanning for one device.
-          manager.stopDeviceScan();
-
-          // Proceed with connection.
-          device
-            .connect()
-            .then(device => {
-              return device.discoverAllServicesAndCharacteristics();
-            })
-            .then(device => {
-              // Do work on device with services and characteristics
-            })
-            .catch(error => {
-              // Handle errors
-            });
-        }
-      });
-    };*/
-      /*manager.onStateChange(state => {
-      const subscription = manager.onStateChange((state: string) => {
-        if (state === 'PoweredOn') {
-          scanAndConnect();
-          subscription.remove();
-        }
-      }, true);
-      return () => subscription.remove();
-    });*/
-    },
-    [
-      /*manager*/
-    ],
-  );
-
-  console.log(manager);
-
-  const updateBTStatus = () => {};
-
-  function controlLightCallback(): void {}
-
-  const turnOn = (lightID: number, callback: callbackType) => {
-    setBulbState(true);
-    controlLight(lightID, callback);
-  };
-
-  const turnOff = (lightID: number, callback: callbackType) => {
-    setBulbState(false);
-    controlLight(lightID, callback);
-  };
-
-  console.log('is BT active? ', btActive);
+  useEffect(() => {}, []);
 
   return (
     <View>
@@ -94,26 +25,15 @@ const IndexScreen: React.FC<Props> = () => {
         <View>
           <Button
             title="Turn Light ON"
-            onPress={() => turnOn(1, controlLightCallback)}
+            onPress={() => setBLEState(true)}
             color="blue"
           />
           <Button
             title="Turn Light OFF"
-            onPress={() => turnOff(1, controlLightCallback)}
+            onPress={() => setBLEState(false)}
             color="red"
           />
-
-          <HueBulb power={bulbState} />
-
-          <Text>New tester is here!</Text>
-          {Platform.OS === 'android' && (
-            <Button
-              title="Toggle BT"
-              onPress={() => {
-                updateBTStatus();
-              }}
-            />
-          )}
+          <HueBulb power={state.power} />
         </View>
       </SafeAreaView>
     </View>
